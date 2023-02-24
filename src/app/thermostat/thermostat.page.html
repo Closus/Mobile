@@ -15,11 +15,11 @@
 </ion-header>
 
 <ion-content>
-  <div class="bg">
+  <div class="bg" >
     <img class="bg-img" src="../../assets/images/bg-thermo.png" alt="">
     <div class="box">
       <div class="temp-high">
-        <i class="fa fa-angle-up" (click)="upTemp()" [ngClass] ="power ? 'enable' : 'disable'"></i>
+        <i class="fa fa-angle-up fa-10x" (click)="upTemp()" [ngClass] ="power ? 'enable' : 'disable'"></i>
       </div>
       <div class="middle">
         <div class="cont" (click)="shutDown()" [ngClass] ="power ? 'powerOff' : 'powerOn'">
@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="temp-down">
-        <i class="fa fa-angle-down" (click)="downTemp()" [ngClass] ="power ? 'enable' : 'disable'"></i>
+        <i class="fa fa-angle-down fa-10x" (click)="downTemp()" [ngClass] ="power ? 'enable' : 'disable'"></i>
       </div>
     </div>
   </div>

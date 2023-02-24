@@ -185,12 +185,12 @@ body{
   height: 25%;
 }
 
-.la-chevron-circle-up {
+.fa-angle-up {
   color: #FA5858;
   top: 5px;
 }
 
-.la-chevron-circle-down {
+.fa-angle-down {
   color: #5882FA;
   bottom: 5px;
 }
@@ -226,6 +226,7 @@ body{
   display: flex;
 }
 
-.la-3x {
-  
+.fa-3x {
+  margin-left: -42px;
+  margin-top: -20px;
 }

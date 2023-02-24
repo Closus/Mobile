@@ -34,10 +34,10 @@ export class ThermostatPage implements OnInit {
   shutDown() {
     this.power = !this.power;
     if (!this.power) {
-      document.getElementById("btn-power")?.setAttribute("class", "las la-3x la-power-off");
+      document.getElementById("btn-power")?.setAttribute("class", "fa-solid fa-power-off fa-3x");
     }
     else {
-      document.getElementById("btn-power")?.setAttribute("class", "las la-power-off");
+      document.getElementById("btn-power")?.setAttribute("class", "fa-solid fa-power-off");
     }
   }
 }

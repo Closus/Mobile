@@ -1,13 +1,8 @@
 ion-content {
   --overflow: hidden;
+  --background: url('../../../assets/images/bg-pincode.png');
 } 
 
-.background {
-  background-image: url('../../../assets/images/bg2.png');
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-}
 
 .centered {
   height: 100%;
@@ -43,4 +38,8 @@ ion-content {
 .pw-logo {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.show {
+  margin-top: 160px
 }

@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>
       <div class="pw-title">
-        <div class="pw-logo-logo">
+        <div class="pw-logo">
           <i class="fa fa-key" aria-hidden="true"></i>
         </div>      
         <div class="pw-font">Password</div>
@@ -14,7 +14,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="background">
+<ion-content>
   <div class="centered">
     <ion-card class="code-card" [ngClass]="{ 'show': showCode }">
       <ion-card-header>
@@ -30,7 +30,7 @@
         <ion-button expand="block" color="danger" (click)="navigation('home')">Cancel</ion-button>
     </ion-card>
 
-    <ion-button expand="block" color="primary" (click)="showCode = !showCode" [ngClass]="{ 'hide': showCode }">
+    <ion-button expand="block" color="success" (click)="showCode = !showCode" [ngClass]="{ 'hide': showCode }">
       Enter code
     </ion-button>
   </div>
