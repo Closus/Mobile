@@ -1,16 +1,12 @@
-import { Component, ViewChild, ElementRef, Renderer2} from '@angular/core';
+import { Component, ViewChild, ElementRef, Renderer2, HostListener} from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import * as Tesseract from 'tesseract.js';
 import { createWorker } from 'tesseract.js';
 import { CropperPosition, LoadedImage, ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
-//import { CameraPreview, CameraPreviewOptions, CameraPreviewPictureOptions } from '@capacitor-community/camera-preview';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@awesome-cordova-plugins/camera-preview/ngx';
 import 'hammerjs';
-
-
-//import '@capacitor-community/camera-preview';
 
 
 @Component({
@@ -19,8 +15,6 @@ import 'hammerjs';
   styleUrls: ['./consumption-counter.page.scss'],
 })
 
-
-
 export class ConsumptionCounterPage {
   @ViewChild(ImageCropperComponent) imageCropper: ImageCropperComponent | any;
   ocrResult: string | undefined;
@@ -28,34 +22,46 @@ export class ConsumptionCounterPage {
   workerReady = false;
   image: any;
   showBody = true;
-  //showCropper = false;
-  headerHeight = 160; // Remplacez par la hauteur réelle de votre header
-  cropPosition = {x1: 25, y1: 210, x2: 325, y2: 310};
-  
+  cropPosition: CropperPosition = {
+    x1: window.innerWidth * 0.15, // 15% de la largeur de la fenêtre
+    y1: window.innerHeight * 0.25, // 25% de la hauteur de la fenêtre
+    x2: window.innerWidth * 0.85, // 15% de la largeur de la fenêtre + 70% de la largeur de la fenêtre
+    y2: window.innerHeight * 0.40 // 25% de la hauteur de la fenêtre + 15% de la hauteur de la fenêtre
+  };
+  numValues: string[] = [];
+  num2Values: string[] = [];
+  joinedValues: any;
+  numbers: any[] = [0, 0, 0, 0, 0]; // Tableau pour stocker les nombres
+  decimals: number[] = [0, 0, 0]; // Tableau pour stocker les décimales
+  index = ['','','','','','','']; 
   imageChangedEvent: any = '';
-  croppedImage: any = '';
-
+  croppedImage: any = ''; 
   cameraActive: boolean = false;
+  showCropper: boolean = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.updateCropPosition();
+  }
+
   constructor(public navCtrl: NavController, 
               private route: Router, 
               private sanitizer: DomSanitizer, 
               private cameraPreview: CameraPreview
               ) {
     //this.loadWorker();
+    this.updateCropPosition();
   }
 
-  // openCamera() {
-  //   const options: CameraPreviewOptions = {
-  //     position: 'rear',
-  //     parent: 'cameraPreview',
-  //     className: 'cameraPreview',
-  //     toBack: true
-  //   };
-  //   CameraPreview.start(options);
-    
-  //   this.cameraActive = true;
-  //   this.showBody = true;
-  // }
+  updateCropPosition() {
+    this.cropPosition = {
+      x1: window.innerWidth * 0.15, // 15% de la largeur de la fenêtre
+      y1: window.innerHeight * 0.25, // 25% de la hauteur de la fenêtre
+      x2: window.innerWidth * 0.85, // 15% de la largeur de la fenêtre + 70% de la largeur de la fenêtre
+      y2: window.innerHeight * 0.40 // 25% de la hauteur de la fenêtre + 15% de la hauteur de la fenêtre
+    };
+  }
+
   openCamera() {
     const options: CameraPreviewOptions = {
       x: 0,
@@ -84,7 +90,6 @@ export class ConsumptionCounterPage {
       this.worker = await createWorker();
       await this.worker?.loadLanguage('eng');
       await this.worker?.initialize('eng');
-
   };
 
   async recognizeCropped() {
@@ -169,14 +174,6 @@ export class ConsumptionCounterPage {
     this.navCtrl.navigateRoot('/input-comsuption');
   }
 
-  numValues: string[] = [];
-  num2Values: string[] = [];
-  joinedValues: any;
-
-  numbers: any[] = [0, 0, 0, 0, 0]; // Tableau pour stocker les nombres
-  decimals: number[] = [0, 0, 0]; // Tableau pour stocker les décimales
-  index = ['','','','','','',''];
-
   addNumValue(value: string, index: number) {
     console.log(value);
     this.numValues[index] = value;
@@ -189,10 +186,6 @@ export class ConsumptionCounterPage {
   getJoinedValues() {
     this.joinedValues = this.numValues.join('')+','+this.num2Values.join('');
     console.log(this.joinedValues);
-  }
-
-  ngOnInit() {
-    //this.startCameraPreview();
   }
 
   navigation(url : String) {
@@ -218,7 +211,12 @@ export class ConsumptionCounterPage {
 
   imageLoaded(image: LoadedImage) {
     setTimeout(() => {
-      this.cropPosition = {x1: 25, y1: 210, x2: 325, y2: 310};
+      this.cropPosition = {
+        x1: window.innerWidth * 0.15, // 15% de la largeur de la fenêtre
+        y1: window.innerHeight * 0.25, // 25% de la hauteur de la fenêtre
+        x2: window.innerWidth * 0.85, // 15% de la largeur de la fenêtre + 70% de la largeur de la fenêtre
+        y2: window.innerHeight * 0.40 // 25% de la hauteur de la fenêtre + 15% de la hauteur de la fenêtre
+      };
     },2);
   }
   
@@ -236,35 +234,6 @@ export class ConsumptionCounterPage {
     }
   }
 
-  // startCameraPreview() {
-  //    const cameraPreviewOpts: CameraPreviewOptions = {
-  //     parent: 'cameraPreview',
-  //     className: 'cameraPreview',
-  //     position: 'rear'
-  //    };
-  //    CameraPreview.start(cameraPreviewOpts);
-  //    this.cameraActive = true;
-  //  }
-
-  // async stopCamera() {
-  //   await CameraPreview.stop();
-  //   this.cameraActive = false;
-  //   this.showBody = true;
-  // }
-
-  // async captureImage() {
-  //   const cameraPreviewPictureOptions: CameraPreviewPictureOptions = {
-  //     quality: 90,
-  //   };
-
-  //   const result = await CameraPreview.capture(cameraPreviewPictureOptions);
-  //   this.image = `data:image/jpeg;base64,${result.value}`;
-
-  //   setTimeout(() => this.crop(), 2000);
-
-  //   this.stopCamera();
-  //   this.showBody = true;
-  // }
   async captureImage() {
     const cameraPreviewPictureOptions: CameraPreviewPictureOptions = {
       width: 1280,
@@ -281,6 +250,7 @@ export class ConsumptionCounterPage {
       console.log(err);
       this.image = 'assets/img/test.jpg'; // fallback photo
     });
+    this.showCropper = true;
   }
 
   async stopCamera() {

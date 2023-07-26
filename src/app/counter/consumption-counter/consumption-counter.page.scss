@@ -21,21 +21,15 @@ body, html {
 .camera-overlay {
   position: absolute;
 }
-// .overlay {
-//   position: absolute;
-//   width: 100%;
-//   height: 100%;
-//   z-index: 10;
-// }
 
 .overlay {
   position: absolute;
   border: 1px solid #fff; // ou toute autre couleur
   background: transparent!important; // ou toute autre couleur
-  top: 50px;
-  left:25px;
-  width: 300px;
-  height:100px;
+  top: 25%; // Ajustez cette valeur pour centrer verticalement l'overlay
+  left: 15%; // Ajustez cette valeur pour centrer horizontalement l'overlay
+  width: 70%; // Ajustez cette valeur pour changer la largeur de l'overlay
+  height: 15%; // Ajustez cette valeur pour changer la hauteur de l'overlay
   z-index: 1;
 }
 .cameraPreview {
