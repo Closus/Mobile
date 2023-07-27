@@ -41,7 +41,7 @@
     </div>
   </div>
   <!-- <img [src]="image" *ngIf="image && !cameraActive"/> -->
-  <image-cropper class="cropper" style="background: transparent!important;" *ngIf="showCropper" 
+  <image-cropper class="cropper" style="background: transparent!important;" *ngIf="showCropper && !imageStopped" 
             [imageURL]="image"
             [autoCrop]=false
             [maintainAspectRatio]="false"
