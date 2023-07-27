@@ -23,10 +23,10 @@ export class ConsumptionCounterPage {
   image: any;
   showBody = true;
   cropPosition: CropperPosition = {
-    x1: window.innerWidth * 0.15, 
-    y1: window.innerHeight * 0.25, 
-    x2: window.innerWidth * 0.15 + window.innerWidth * 0.70, 
-    y2: window.innerHeight * 0.25 + window.innerHeight * 0.15 
+    x1: window.innerWidth * 0.15, // 15% de la largeur de la fenêtre
+    y1: window.innerHeight * 0.25, // 25% de la hauteur de la fenêtre
+    x2: window.innerWidth * 0.85, // 15% de la largeur de la fenêtre + 70% de la largeur de la fenêtre
+    y2: window.innerHeight * 0.40 // 25% de la hauteur de la fenêtre + 15% de la hauteur de la fenêtre
   };
   numValues: string[] = [];
   num2Values: string[] = [];
@@ -55,10 +55,10 @@ export class ConsumptionCounterPage {
 
   updateCropPosition() {
     this.cropPosition = {
-      x1: window.innerWidth * 0.15, 
-      y1: window.innerHeight * 0.25, 
-      x2: window.innerWidth * 0.15 + window.innerWidth * 0.70, 
-      y2: window.innerHeight * 0.25 + window.innerHeight * 0.15 
+      x1: window.innerWidth * 0.15, // 15% de la largeur de la fenêtre
+      y1: window.innerHeight * 0.25, // 25% de la hauteur de la fenêtre
+      x2: window.innerWidth * 0.85, // 15% de la largeur de la fenêtre + 70% de la largeur de la fenêtre
+      y2: window.innerHeight * 0.40 // 25% de la hauteur de la fenêtre + 15% de la hauteur de la fenêtre
     };
   }
 
@@ -212,10 +212,10 @@ export class ConsumptionCounterPage {
   imageLoaded(image: LoadedImage) {
     setTimeout(() => {
       this.cropPosition = {
-        x1: window.innerWidth * 0.15, 
-        y1: window.innerHeight * 0.25, 
-        x2: window.innerWidth * 0.15 + window.innerWidth * 0.70, 
-        y2: window.innerHeight * 0.25 + window.innerHeight * 0.15 
+        x1: window.innerWidth * 0.15, // 15% de la largeur de la fenêtre
+        y1: window.innerHeight * 0.25, // 25% de la hauteur de la fenêtre
+        x2: window.innerWidth * 0.85, // 15% de la largeur de la fenêtre + 70% de la largeur de la fenêtre
+        y2: window.innerHeight * 0.40 // 25% de la hauteur de la fenêtre + 15% de la hauteur de la fenêtre
       };
     },2);
   }
