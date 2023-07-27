@@ -23,10 +23,10 @@ export class ConsumptionCounterPage {
   image: any;
   showBody = true;
   cropPosition: CropperPosition = {
-    x1: 0,
-    y1: 100,
-    x2: 200,
-    y2: 200
+    x1: window.innerWidth * 0.14, 
+    y1: window.innerHeight * 0.24, 
+    x2: window.innerWidth * 0.14 + window.innerWidth * 0.69, 
+    y2: window.innerHeight * 0.24 + window.innerHeight * 0.14 
   };
   numValues: string[] = [];
   num2Values: string[] = [];
@@ -55,10 +55,10 @@ export class ConsumptionCounterPage {
 
   updateCropPosition() {
     this.cropPosition = {
-      x1: window.innerWidth * 0.15, 
-      y1: window.innerHeight * 0.25, 
-      x2: window.innerWidth * 0.15 + window.innerWidth * 0.70, 
-      y2: window.innerHeight * 0.25 + window.innerHeight * 0.15 
+      x1: window.innerWidth * 0.14, 
+      y1: window.innerHeight * 0.24, 
+      x2: window.innerWidth * 0.14 + window.innerWidth * 0.69, 
+      y2: window.innerHeight * 0.24 + window.innerHeight * 0.14 
     };
   }
 
@@ -212,10 +212,10 @@ export class ConsumptionCounterPage {
   imageLoaded(image: LoadedImage) {
     setTimeout(() => {
       this.cropPosition = {
-        x1: window.innerWidth * 0.15, 
-        y1: window.innerHeight * 0.25, 
-        x2: window.innerWidth * 0.15 + window.innerWidth * 0.70, 
-        y2: window.innerHeight * 0.25 + window.innerHeight * 0.15 
+        x1: window.innerWidth * 0.14, 
+        y1: window.innerHeight * 0.24, 
+        x2: window.innerWidth * 0.14 + window.innerWidth * 0.69, 
+        y2: window.innerHeight * 0.24 + window.innerHeight * 0.14 
       };
     },2);
   }
