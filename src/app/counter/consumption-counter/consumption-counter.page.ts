@@ -23,10 +23,10 @@ export class ConsumptionCounterPage {
   image: any;
   showBody = true;
   cropPosition: CropperPosition = {
-    x1: window.innerWidth * 0.15, // 15% de la largeur de la fenêtre
-    y1: window.innerHeight * 0.25, // 25% de la hauteur de la fenêtre
-    x2: window.innerWidth * 0.85, // 15% de la largeur de la fenêtre + 70% de la largeur de la fenêtre
-    y2: window.innerHeight * 0.40 // 25% de la hauteur de la fenêtre + 15% de la hauteur de la fenêtre
+    x1: 0,
+    y1: 100,
+    x2: 200,
+    y2: 200
   };
   numValues: string[] = [];
   num2Values: string[] = [];
@@ -50,7 +50,7 @@ export class ConsumptionCounterPage {
               private cameraPreview: CameraPreview
               ) {
     //this.loadWorker();
-    this.updateCropPosition();
+    //this.updateCropPosition();
   }
 
   updateCropPosition() {
@@ -212,12 +212,12 @@ export class ConsumptionCounterPage {
   imageLoaded(image: LoadedImage) {
     setTimeout(() => {
       this.cropPosition = {
-        x1: window.innerWidth * 0.15, // 15% de la largeur de la fenêtre
-        y1: window.innerHeight * 0.25, // 25% de la hauteur de la fenêtre
-        x2: window.innerWidth * 0.85, // 15% de la largeur de la fenêtre + 70% de la largeur de la fenêtre
-        y2: window.innerHeight * 0.40 // 25% de la hauteur de la fenêtre + 15% de la hauteur de la fenêtre
+        x1: 15,
+        y1: 200,
+        x2: 350,
+        y2: 250
       };
-    },2);
+    });
   }
   
   cropperReady() {

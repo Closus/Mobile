@@ -31,14 +31,25 @@ img, image-cropper {
   position: absolute;
 }
 
+// .overlay {
+//   position: absolute;
+//   border: 1px solid #fff; // ou toute autre couleur
+//   background: transparent!important; // ou toute autre couleur
+//   top: 25%; // Ajustez cette valeur pour centrer verticalement l'overlay
+//   left: 15%; // Ajustez cette valeur pour centrer horizontalement l'overlay
+//   width: 70%; // Ajustez cette valeur pour changer la largeur de l'overlay
+//   height: 15%; // Ajustez cette valeur pour changer la hauteur de l'overlay
+//   z-index: 1;
+// }
+
 .overlay {
   position: absolute;
-  border: 1px solid #fff; // ou toute autre couleur
-  background: transparent!important; // ou toute autre couleur
-  top: 25%; // Ajustez cette valeur pour centrer verticalement l'overlay
-  left: 15%; // Ajustez cette valeur pour centrer horizontalement l'overlay
-  width: 70%; // Ajustez cette valeur pour changer la largeur de l'overlay
-  height: 15%; // Ajustez cette valeur pour changer la hauteur de l'overlay
+  border: 1px solid #fff;
+  background: transparent!important;
+  top: 200px; // y1
+  left: 15px; // x1
+  width: 335px; // x2 - x1
+  height: 50px; // y2 - y1
   z-index: 1;
 }
 
