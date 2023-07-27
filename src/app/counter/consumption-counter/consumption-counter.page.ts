@@ -23,10 +23,10 @@ export class ConsumptionCounterPage {
   image: any;
   showBody = true;
   cropPosition: CropperPosition = {
-    x1: window.innerWidth * 0.14, 
-    y1: window.innerHeight * 0.22, 
-    x2: window.innerWidth * 0.14 + window.innerWidth * 0.69, 
-    y2: window.innerHeight * 0.22 + window.innerHeight * 0.10
+    x1: window.innerWidth * 0.15, 
+    y1: window.innerHeight * 0.23, 
+    x2: window.innerWidth * 0.15 + window.innerWidth * 0.70, 
+    y2: window.innerHeight * 0.23 + window.innerHeight * 0.10
   };
   numValues: string[] = [];
   num2Values: string[] = [];
@@ -55,10 +55,10 @@ export class ConsumptionCounterPage {
 
   updateCropPosition() {
     this.cropPosition = {
-      x1: window.innerWidth * 0.14, 
-      y1: window.innerHeight * 0.22, 
-      x2: window.innerWidth * 0.14 + window.innerWidth * 0.69, 
-      y2: window.innerHeight * 0.22 + window.innerHeight * 0.10
+      x1: window.innerWidth * 0.15, 
+      y1: window.innerHeight * 0.23, 
+      x2: window.innerWidth * 0.15 + window.innerWidth * 0.70, 
+      y2: window.innerHeight * 0.23 + window.innerHeight * 0.10
     };
   }
 
@@ -212,10 +212,10 @@ export class ConsumptionCounterPage {
   imageLoaded(image: LoadedImage) {
     setTimeout(() => {
       this.cropPosition = {
-        x1: window.innerWidth * 0.14, 
-        y1: window.innerHeight * 0.22, 
-        x2: window.innerWidth * 0.14 + window.innerWidth * 0.69, 
-        y2: window.innerHeight * 0.22 + window.innerHeight * 0.10
+        x1: window.innerWidth * 0.15, 
+        y1: window.innerHeight * 0.23, 
+        x2: window.innerWidth * 0.15 + window.innerWidth * 0.70, 
+        y2: window.innerHeight * 0.23 + window.innerHeight * 0.10
       };
     },2);
   }
