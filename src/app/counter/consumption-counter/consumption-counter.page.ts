@@ -217,7 +217,7 @@ export class ConsumptionCounterPage {
         x2: 350,
         y2: 250
       };
-    });
+    },2);
   }
   
   cropperReady() {
