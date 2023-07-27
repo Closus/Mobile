@@ -21,7 +21,7 @@ export class ConsumptionCounterPage {
   worker: Tesseract.Worker | undefined;
   workerReady = false;
   image: any;
-  showBody = true;
+  showBody = false;
   cropPosition: CropperPosition = {
     x1: window.innerWidth * 0.14, 
     y1: window.innerHeight * 0.23, 
