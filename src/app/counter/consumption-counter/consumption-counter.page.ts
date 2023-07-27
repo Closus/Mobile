@@ -24,9 +24,9 @@ export class ConsumptionCounterPage {
   showBody = true;
   cropPosition: CropperPosition = {
     x1: window.innerWidth * 0.14, 
-    y1: window.innerHeight * 0.24, 
+    y1: window.innerHeight * 0.22, 
     x2: window.innerWidth * 0.14 + window.innerWidth * 0.69, 
-    y2: window.innerHeight * 0.24 + window.innerHeight * 0.14 
+    y2: window.innerHeight * 0.22 + window.innerHeight * 0.10
   };
   numValues: string[] = [];
   num2Values: string[] = [];
@@ -56,9 +56,9 @@ export class ConsumptionCounterPage {
   updateCropPosition() {
     this.cropPosition = {
       x1: window.innerWidth * 0.14, 
-      y1: window.innerHeight * 0.24, 
+      y1: window.innerHeight * 0.22, 
       x2: window.innerWidth * 0.14 + window.innerWidth * 0.69, 
-      y2: window.innerHeight * 0.24 + window.innerHeight * 0.14 
+      y2: window.innerHeight * 0.22 + window.innerHeight * 0.10
     };
   }
 
@@ -213,9 +213,9 @@ export class ConsumptionCounterPage {
     setTimeout(() => {
       this.cropPosition = {
         x1: window.innerWidth * 0.14, 
-        y1: window.innerHeight * 0.24, 
+        y1: window.innerHeight * 0.22, 
         x2: window.innerWidth * 0.14 + window.innerWidth * 0.69, 
-        y2: window.innerHeight * 0.24 + window.innerHeight * 0.14 
+        y2: window.innerHeight * 0.22 + window.innerHeight * 0.10
       };
     },2);
   }
