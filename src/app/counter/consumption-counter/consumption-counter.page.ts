@@ -38,6 +38,7 @@ export class ConsumptionCounterPage {
   croppedImage: any = ''; 
   cameraActive: boolean = false;
   showCropper: boolean = false;
+  imageStopped: boolean = false;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -257,6 +258,7 @@ export class ConsumptionCounterPage {
     this.cameraPreview.stopCamera();
     this.cameraActive = false;
     this.showBody = true;
+    this.imageStopped = true;
   }
 }
 
