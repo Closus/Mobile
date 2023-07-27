@@ -32,7 +32,7 @@ img, image-cropper {
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   border: 1px solid #fff; // ou toute autre couleur
   background: transparent!important; // ou toute autre couleur
   top: 25%; // Ajustez cette valeur pour centrer verticalement l'overlay
