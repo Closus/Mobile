@@ -251,7 +251,7 @@ export class ConsumptionCounterPage {
       console.log(err);
       this.image = 'assets/img/test.jpg'; // fallback photo
     });
-    this.showCropper = true;
+    this.showCropper = false;
   }
 
   async stopCamera() {

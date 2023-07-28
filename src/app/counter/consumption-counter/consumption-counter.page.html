@@ -17,6 +17,8 @@
       <ion-button (click)="captureImage()" expand="block" id="capture">
         <ion-icon name="camera" slot="icon-only"></ion-icon>
       </ion-button>
+      <ion-button *ngIf="!cameraActive" expand="block" shape="round" size="medium" (click)="openCamera()">Prendre une photo</ion-button>
+      <img [src]="croppedImage" />
       <div *ngIf="showBody" class="main">  
           <ion-button  expand="block" shape="round" size="medium" (click)="recognizeCropped()">Traduire l'image</ion-button>
           <div class="container">
@@ -39,7 +41,7 @@
         </div>
     </div>
   </div>
-  <img [src]="image" *ngIf="image && !cameraActive"/>
+  <!-- <img [src]="image" *ngIf="image && !cameraActive"/> -->
   <image-cropper class="cropper" style="background: transparent!important;" *ngIf="showCropper" 
             [imageURL]="image"
             [autoCrop]=false
@@ -52,7 +54,7 @@
             (cropperReady)="cropperReady()"
             (loadImageFailed)="loadImageFailed()">
   </image-cropper>
-  <ion-button *ngIf="!cameraActive" expand="block" shape="round" size="medium" (click)="openCamera()">Prendre une photo</ion-button>
+  
   <!--<ion-button expand="block" shape="round" size="medium" (click)="crop()">CROP THE PHOTO !!</ion-button>-->  
-  <img [src]="croppedImage" />
+  <!-- <img [src]="croppedImage" /> -->
 </ion-content>
