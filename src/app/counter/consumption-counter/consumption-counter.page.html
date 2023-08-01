@@ -8,7 +8,7 @@
 
 <ion-content>   
   <div class="cameraPreview" id="cameraPreview" *ngIf="cameraActive">
-    <div *ngIf="cameraActive && croppedImage">
+    <div *ngIf="cameraActive && !croppedImage">
       <div class="overlay" style="background: transparent !important;">
       </div>
       <ion-button (click)="stopCamera()" expand="block" id="close">
