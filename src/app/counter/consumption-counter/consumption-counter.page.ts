@@ -93,44 +93,42 @@ export class ConsumptionCounterPage {
       await this.worker?.initialize('eng');
   };
 
-  async recognizeCropped() {
-    if (this.worker) {
-      const imageUrl = this.croppedImage.changingThisBreaksApplicationSecurity;
-      const result = await this.worker?.recognize(imageUrl);
-      console.log(result);
-      this.ocrResult = result?.data.text.replace(/\D/g, "");
-      const ocrDigits = this.ocrResult?.split('');
-      // Réinitialiser les tableaux des valeurs
-      this.numValues = [];
-      this.num2Values = [];
-      // Remplir les valeurs des numValues
-      if (ocrDigits && ocrDigits.length > 0) {
-        for (let i = 0; i < 6; i++) {
-          if (ocrDigits[i]) {
-            this.numValues.push(ocrDigits[i]);
-          } else {
-            this.numValues.push('0');
-            this.num2Values.push('0');
-          }
+  async recognizeCropped(croppedImage: any) {
+    const imageUrl = croppedImage.changingThisBreaksApplicationSecurity;
+    const result = await this.worker?.recognize(imageUrl);
+    console.log(result);
+    this.ocrResult = result?.data.text.replace(/\D/g, "");
+    const ocrDigits = this.ocrResult?.split('');
+    // Réinitialiser les tableaux des valeurs
+    this.numValues = [];
+    this.num2Values = [];
+    // Remplir les valeurs des numValues
+    if (ocrDigits && ocrDigits.length > 0) {
+      for (let i = 0; i < 6; i++) {
+        if (ocrDigits[i]) {
+          this.numValues.push(ocrDigits[i]);
+        } else {
+          this.numValues.push('0');
+          this.num2Values.push('0');
         }
       }
-      // Remplir les valeurs des num2Values
-      if (ocrDigits && ocrDigits.length >= 6) {
-        for (let i = 6; i < 9; i++) {
-          if (ocrDigits[i]) {
-            this.num2Values.push(ocrDigits[i]);
-          } else {
-            this.num2Values.push('0');
-          }
+    }
+    // Remplir les valeurs des num2Values
+    if (ocrDigits && ocrDigits.length >= 6) {
+      for (let i = 6; i < 9; i++) {
+        if (ocrDigits[i]) {
+          this.num2Values.push(ocrDigits[i]);
+        } else {
+          this.num2Values.push('0');
         }
       }
-      // Mettre à jour les valeurs des index utilisées pour les bindings des inputs
-      for (let i = 0; i < this.numValues.length; i++) {
-        this.index[i] = this.numValues[i];
-      }
-      for (let i = 0; i < this.num2Values.length; i++) {
-        this.index[6 + i] = this.num2Values[i];
-      }
+    }
+    // Mettre à jour les valeurs des index utilisées pour les bindings des inputs
+    for (let i = 0; i < this.numValues.length; i++) {
+      this.index[i] = this.numValues[i];
+    }
+    for (let i = 0; i < this.num2Values.length; i++) {
+      this.index[6 + i] = this.num2Values[i];
     }
   };
 
