@@ -210,6 +210,45 @@ export class ConsumptionCounterPage {
   }
 
 
+  // modifyImage() {
+  //   const canvas = document.createElement('canvas');
+  //   const context = canvas.getContext('2d');
+  
+  //   const image = new Image();
+  //   image.src = this.image;
+  
+  //   image.onload = () => {
+  //     canvas.width = image.width;
+  //     canvas.height = image.height;
+  
+  //     // Draw the image on the canvas
+  //     context?.drawImage(image, 0, 0);
+  
+  //     // Get the image data
+  //     const imageData = context?.getImageData(0, 0, canvas.width, canvas.height);
+  //     if (imageData) {
+  //       const data = imageData.data;
+        
+  //       // Convert each pixel to its negative value
+  //       for (let i = 0; i < data.length; i += 4) {
+  //         data[i] = 255 - data[i]; // Red
+  //         data[i + 1] = 255 - data[i + 1]; // Green
+  //         data[i + 2] = 255 - data[i + 2]; // Blue
+  //       }
+        
+  //       // Put the modified image data back onto the canvas
+  //       context?.putImageData(imageData, 0, 0);
+        
+  //       // Get the base64 representation of the modified image
+  //       const modifiedImageBase64 = canvas.toDataURL();
+        
+  //       // Set the croppedImage variable to the modified image
+  //       this.image = modifiedImageBase64;
+  //     }
+  //   };
+  // }
+
+  // test de gris
   modifyImage() {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
@@ -229,11 +268,13 @@ export class ConsumptionCounterPage {
       if (imageData) {
         const data = imageData.data;
         
-        // Convert each pixel to its negative value
+        // Apply thresholding
         for (let i = 0; i < data.length; i += 4) {
-          data[i] = 255 - data[i]; // Red
-          data[i + 1] = 255 - data[i + 1]; // Green
-          data[i + 2] = 255 - data[i + 2]; // Blue
+          const grayscale = 0.3 * data[i] + 0.59 * data[i + 1] + 0.11 * data[i + 2];
+          const binaryColor = grayscale < 128 ? 0 : 255;
+          data[i] = binaryColor; // Red
+          data[i + 1] = binaryColor; // Green
+          data[i + 2] = binaryColor; // Blue
         }
         
         // Put the modified image data back onto the canvas
