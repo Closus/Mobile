@@ -25,8 +25,8 @@ export class ConsumptionCounterPage {
   cropPosition: CropperPosition = {
     x1: window.innerWidth * 0.14, 
     y1: window.innerHeight * 0.23, 
-    x2: window.innerWidth * 0.14 + window.innerWidth * 0.71, 
-    y2: window.innerHeight * 0.23 + window.innerHeight * 0.10
+    x2: window.innerWidth * 0.14 + window.innerWidth * 0.8, // Increase the width to 80% of the window width
+    y2: window.innerHeight * 0.23 + window.innerHeight * 0.08 // Decrease the height to 8% of the window height
   };
   numValues: string[] = [];
   num2Values: string[] = [];
@@ -59,8 +59,8 @@ export class ConsumptionCounterPage {
     this.cropPosition = {
       x1: window.innerWidth * 0.14, 
       y1: window.innerHeight * 0.23, 
-      x2: window.innerWidth * 0.14 + window.innerWidth * 0.71, 
-      y2: window.innerHeight * 0.23 + window.innerHeight * 0.10
+      x2: window.innerWidth * 0.14 + window.innerWidth * 0.8, // Increase the width to 80% of the window width
+      y2: window.innerHeight * 0.23 + window.innerHeight * 0.08 // Decrease the height to 8% of the window height
     };
   }
 
@@ -253,8 +253,8 @@ export class ConsumptionCounterPage {
       this.cropPosition = {
         x1: window.innerWidth * 0.14, 
         y1: window.innerHeight * 0.23, 
-        x2: window.innerWidth * 0.14 + window.innerWidth * 0.71, 
-        y2: window.innerHeight * 0.23 + window.innerHeight * 0.10
+        x2: window.innerWidth * 0.14 + window.innerWidth * 0.8, // Increase the width to 80% of the window width
+        y2: window.innerHeight * 0.23 + window.innerHeight * 0.08 // Decrease the height to 8% of the window height
       };
     },2);
   }
