@@ -39,6 +39,7 @@ export class ConsumptionCounterPage {
   cameraActive: boolean = false;
   showCropper: boolean = false;
   imageStopped: boolean = false;
+  cropped: boolean = false;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -247,6 +248,7 @@ export class ConsumptionCounterPage {
       setTimeout(() => this.crop(), 2000);
       this.stopCamera();
       this.showBody = true;
+      this.cropped = true;
     }, (err) => {
       console.log(err);
       this.image = 'assets/img/test.jpg'; // fallback photo
