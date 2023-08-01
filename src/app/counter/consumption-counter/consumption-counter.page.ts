@@ -243,7 +243,7 @@ export class ConsumptionCounterPage {
         const modifiedImageBase64 = canvas.toDataURL();
         
         // Set the croppedImage variable to the modified image
-        this.modifiedImage = modifiedImageBase64;
+        this.image = modifiedImageBase64;
       }
     };
   }
@@ -282,6 +282,7 @@ export class ConsumptionCounterPage {
 
     this.cameraPreview.takePicture(cameraPreviewPictureOptions).then((imageData) => {
       this.image = 'data:image/jpeg;base64,' + imageData;
+      this.modifyImage();
       setTimeout(() => this.crop(), 2000);
       this.stopCamera();
       this.showBody = true;
