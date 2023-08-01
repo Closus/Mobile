@@ -8,6 +8,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@awesome-cordova-plugins/camera-preview/ngx';
 import 'hammerjs';
 
+declare var cv: any;
+
 
 @Component({
   selector: 'app-consumption-counter',
@@ -40,6 +42,7 @@ export class ConsumptionCounterPage {
   showCropper: boolean = false;
   imageStopped: boolean = false;
   modifiedImage: any;
+  
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -249,45 +252,100 @@ export class ConsumptionCounterPage {
   // }
 
   // test de gris
-  modifyImage() {
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
+  // modifyImage() {
+  //   const canvas = document.createElement('canvas');
+  //   const context = canvas.getContext('2d');
   
-    const image = new Image();
-    image.src = this.image;
+  //   const image = new Image();
+  //   image.src = this.image;
   
-    image.onload = () => {
-      canvas.width = image.width;
-      canvas.height = image.height;
+  //   image.onload = () => {
+  //     canvas.width = image.width;
+  //     canvas.height = image.height;
   
-      // Draw the image on the canvas
-      context?.drawImage(image, 0, 0);
+  //     // Draw the image on the canvas
+  //     context?.drawImage(image, 0, 0);
   
-      // Get the image data
-      const imageData = context?.getImageData(0, 0, canvas.width, canvas.height);
-      if (imageData) {
-        const data = imageData.data;
+  //     // Get the image data
+  //     const imageData = context?.getImageData(0, 0, canvas.width, canvas.height);
+  //     if (imageData) {
+  //       const data = imageData.data;
         
-        // Apply thresholding
-        for (let i = 0; i < data.length; i += 4) {
-          const grayscale = 0.3 * data[i] + 0.59 * data[i + 1] + 0.11 * data[i + 2];
-          const binaryColor = grayscale < 128 ? 0 : 255;
-          data[i] = binaryColor; // Red
-          data[i + 1] = binaryColor; // Green
-          data[i + 2] = binaryColor; // Blue
-        }
+  //       // Apply thresholding
+  //       for (let i = 0; i < data.length; i += 4) {
+  //         const grayscale = 0.3 * data[i] + 0.59 * data[i + 1] + 0.11 * data[i + 2];
+  //         const binaryColor = grayscale < 128 ? 0 : 255;
+  //         data[i] = binaryColor; // Red
+  //         data[i + 1] = binaryColor; // Green
+  //         data[i + 2] = binaryColor; // Blue
+  //       }
         
-        // Put the modified image data back onto the canvas
-        context?.putImageData(imageData, 0, 0);
+  //       // Put the modified image data back onto the canvas
+  //       context?.putImageData(imageData, 0, 0);
         
-        // Get the base64 representation of the modified image
-        const modifiedImageBase64 = canvas.toDataURL();
+  //       // Get the base64 representation of the modified image
+  //       const modifiedImageBase64 = canvas.toDataURL();
         
-        // Set the croppedImage variable to the modified image
-        this.image = modifiedImageBase64;
-      }
-    };
+  //       // Set the croppedImage variable to the modified image
+  //       this.image = modifiedImageBase64;
+  //     }
+  //   };
+  // }
+
+  // test seuillage etc
+  async modifyImage() {
+    const src = cv.imread(this.image);
+    let dst = new cv.Mat();
+    let gray = new cv.Mat();
+    let blurred = new cv.Mat();
+    let thresholded = new cv.Mat();
+    let dilated = new cv.Mat();
+  
+    // Convert to grayscale
+    cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
+  
+    // Apply Gaussian blur
+    cv.GaussianBlur(gray, blurred, new cv.Size(5, 5), 0);
+  
+    // Apply adaptive thresholding
+    cv.adaptiveThreshold(blurred, thresholded, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY_INV, 11, 2);
+  
+    // Dilate to connect text regions
+    let M = cv.Mat.ones(2, 2, cv.CV_8U);
+    let anchor = new cv.Point(-1, -1);
+    cv.dilate(thresholded, dilated, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue());
+  
+    // Convert back to base64 representation
+    cv.imshow('canvasOutput', dilated);
+    const canvas = document.getElementById('canvasOutput') as HTMLCanvasElement;
+    const modifiedImageBase64 = canvas?.toDataURL();
+  
+    // Set the croppedImage variable to the modified image
+    this.image = modifiedImageBase64;
+  
+    // Clean up
+    src.delete();
+    dst.delete();
+    gray.delete();
+    blurred.delete();
+    thresholded.delete();
+    dilated.delete();
+    M.delete();
   }
+
+  onOpenCvReady() {
+    const statusElement = document.getElementById('status');
+    if (statusElement) {
+      statusElement.innerHTML = 'OpenCV.js is ready.';
+    }
+  }
+
+  onRuntimeInitialized() {
+    // OpenCV is now ready to use
+    this.modifyImage();
+  }
+
+  /////////////////////////////////////////////////////////
 
   imageLoaded(image: LoadedImage) {
     setTimeout(() => {
