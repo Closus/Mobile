@@ -50,7 +50,7 @@ export class ConsumptionCounterPage {
               private sanitizer: DomSanitizer, 
               private cameraPreview: CameraPreview
               ) {
-    //this.loadWorker();
+    this.loadWorker();
     this.updateCropPosition();
   }
 
