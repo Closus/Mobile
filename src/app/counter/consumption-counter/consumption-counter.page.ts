@@ -39,6 +39,7 @@ export class ConsumptionCounterPage {
   cameraActive: boolean = false;
   showCropper: boolean = false;
   imageStopped: boolean = false;
+  modifiedImage: any;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -203,17 +204,18 @@ export class ConsumptionCounterPage {
     this.imageChangedEvent = event;
   }
 
-  //imageCropped(event: ImageCroppedEvent) {
-  //  this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl || event.base64 || '');
-  //  console.log(this.croppedImage);
-  //}
-
   imageCropped(event: ImageCroppedEvent) {
+   this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl || event.base64 || '');
+   console.log(this.croppedImage);
+  }
+
+
+  modifyImage() {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
   
     const image = new Image();
-    image.src = event.base64 ?? '';
+    image.src = this.image;
   
     image.onload = () => {
       canvas.width = image.width;
@@ -241,7 +243,7 @@ export class ConsumptionCounterPage {
         const modifiedImageBase64 = canvas.toDataURL();
         
         // Set the croppedImage variable to the modified image
-        this.croppedImage = modifiedImageBase64;
+        this.modifiedImage = modifiedImageBase64;
       }
     };
   }
