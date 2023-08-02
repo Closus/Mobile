@@ -42,6 +42,7 @@ export class ConsumptionCounterPage {
   showCropper: boolean = false;
   imageStopped: boolean = false;
   modifiedImage: any;
+  result: any;
   
 
   @HostListener('window:resize', ['$event'])
@@ -55,7 +56,7 @@ export class ConsumptionCounterPage {
               private cameraPreview: CameraPreview,
               private ocr: OCR
               ) {
-    this.loadWorker();
+    //this.loadWorker();
     this.updateCropPosition();
   }
 
@@ -100,10 +101,10 @@ export class ConsumptionCounterPage {
 
   async recognizeCropped(croppedImage: any) {
     const imageUrl = croppedImage.changingThisBreaksApplicationSecurity;
-    const result = await this.ocr.recText(OCRSourceType.NORMFILEURL, imageUrl);
-    console.log(result);
-    this.ocrResult = result.toString(); //.replace(/\D/g, "");
-    const ocrDigits = this.ocrResult.split('');
+    this.result = await this.ocr.recText(OCRSourceType.NORMFILEURL, imageUrl);
+    console.log(this.result);
+    this.ocrResult = this.result.toString(); //.replace(/\D/g, "");
+    const ocrDigits = this.ocrResult?.split('');
     // Réinitialiser les tableaux des valeurs
     this.numValues = [];
     this.num2Values = [];
