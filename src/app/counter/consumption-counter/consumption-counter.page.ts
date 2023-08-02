@@ -7,8 +7,8 @@ import { CropperPosition, LoadedImage, ImageCroppedEvent, ImageCropperComponent 
 import { DomSanitizer } from '@angular/platform-browser';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@awesome-cordova-plugins/camera-preview/ngx';
 import 'hammerjs';
+import { OCR, OCRSourceType } from '@awesome-cordova-plugins/ocr/ngx';
 
-declare var cv: any;
 
 
 @Component({
@@ -52,7 +52,8 @@ export class ConsumptionCounterPage {
   constructor(public navCtrl: NavController, 
               private route: Router, 
               private sanitizer: DomSanitizer, 
-              private cameraPreview: CameraPreview
+              private cameraPreview: CameraPreview,
+              private ocr: OCR
               ) {
     this.loadWorker();
     this.updateCropPosition();
@@ -99,10 +100,10 @@ export class ConsumptionCounterPage {
 
   async recognizeCropped(croppedImage: any) {
     const imageUrl = croppedImage.changingThisBreaksApplicationSecurity;
-    const result = await this.worker?.recognize(imageUrl);
+    const result = await this.ocr.recText(OCRSourceType.NORMFILEURL, imageUrl);
     console.log(result);
-    this.ocrResult = result?.data.text.replace(/\D/g, "");
-    const ocrDigits = this.ocrResult?.split('');
+    this.ocrResult = result.toString().replace(/\D/g, "");
+    const ocrDigits = this.ocrResult.split('');
     // Réinitialiser les tableaux des valeurs
     this.numValues = [];
     this.num2Values = [];
