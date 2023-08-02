@@ -101,9 +101,9 @@ export class ConsumptionCounterPage {
 
   async recognizeCropped(croppedImage: any) {
     const imageUrl = croppedImage.changingThisBreaksApplicationSecurity;
-    this.result = await this.ocr.recText(OCRSourceType.NORMFILEURL, imageUrl);
-    console.log(this.result);
-    this.ocrResult = this.result.toString(); //.replace(/\D/g, "");
+    const result = await this.worker?.recognize(imageUrl);
+    console.log(result);
+    //this.ocrResult = result?.data.text.replace(/\D/g, "");
     const ocrDigits = this.ocrResult?.split('');
     // Réinitialiser les tableaux des valeurs
     this.numValues = [];
