@@ -9,6 +9,7 @@ import { ConsumptionCounterPageRoutingModule } from './consumption-counter-routi
 import { ConsumptionCounterPage } from './consumption-counter.page';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { CameraPreview } from '@awesome-cordova-plugins/camera-preview/ngx';
+import { OCR } from '@awesome-cordova-plugins/ocr/ngx';
 
 
 
@@ -20,7 +21,7 @@ import { CameraPreview } from '@awesome-cordova-plugins/camera-preview/ngx';
     ConsumptionCounterPageRoutingModule,
     ImageCropperModule,
   ],
-  providers: [CameraPreview],
+  providers: [CameraPreview, OCR],
   declarations: [ConsumptionCounterPage]
 })
 export class ConsumptionCounterPageModule {}
