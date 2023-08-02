@@ -103,7 +103,7 @@ export class ConsumptionCounterPage {
     const imageUrl = croppedImage.changingThisBreaksApplicationSecurity;
     const result = await this.worker?.recognize(imageUrl);
     console.log(result);
-    //this.ocrResult = result?.data.text.replace(/\D/g, "");
+    this.ocrResult = result?.data.text//.replace(/\D/g, "");
     const ocrDigits = this.ocrResult?.split('');
     // Réinitialiser les tableaux des valeurs
     this.numValues = [];
