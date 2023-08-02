@@ -21,7 +21,7 @@ import { OCR } from '@awesome-cordova-plugins/ocr/ngx';
     ConsumptionCounterPageRoutingModule,
     ImageCropperModule,
   ],
-  providers: [CameraPreview, OCR],
+  providers: [CameraPreview],
   declarations: [ConsumptionCounterPage]
 })
 export class ConsumptionCounterPageModule {}
