@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'helios.control.light',
-  appName: 'Helios Control Light',
+  appId: 'helios.control.lite',
+  appName: 'Helios Control Lite',
   webDir: 'www',
   bundledWebRuntime: false
 };
